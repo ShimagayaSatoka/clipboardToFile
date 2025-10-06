@@ -42,7 +42,7 @@ LRESULT CALLBACK WndProc(HWND hwnd , UINT msg , WPARAM wp , LPARAM lp) {
 					bfh.bfSize = headerSize + dibSize - bih->biSize;
 					bfh.bfOffBits = headerSize;
 
-					std::ofstream os("clipboard_image_win32.bmp", std::ios::binary);
+					std::ofstream os("ClipToBMP/ClipToBMP.bmp ", std::ios::binary);
 					os.write((char*)&bfh, sizeof(bfh));
 					os.write((char*)pDib, dibSize);
 					os.close();
@@ -79,12 +79,12 @@ int WINAPI WinMain(HINSTANCE hInstance , HINSTANCE hPrevInstance ,
 	winc.hCursor		= LoadCursor(NULL , IDC_ARROW);
 	winc.hbrBackground	= (HBRUSH)GetStockObject(WHITE_BRUSH);
 	winc.lpszMenuName	= NULL;
-	winc.lpszClassName	= TEXT("KITTY");
+	winc.lpszClassName	= TEXT("ClipToBMP");
 
 	if (!RegisterClass(&winc)) return -1;
 
 	hwnd = CreateWindow(
-			TEXT("KITTY") , TEXT("Kitty on your lap") ,
+			TEXT("ClipToBMP") , TEXT("clipboard to imagefile") ,
 			WS_OVERLAPPEDWINDOW | WS_VISIBLE ,
 			CW_USEDEFAULT , CW_USEDEFAULT ,
 			CW_USEDEFAULT , CW_USEDEFAULT ,
